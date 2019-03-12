@@ -1,20 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <form action="{{ path('Security.login') }}" method="post" class="text-center border border-light p-5">
-        <div class="md-form form-lg">
-            <input type="text" id="inputEmail" class="form-control form-control-lg" required name="_username">
-            <label for="inputEmail">Adresse email</label>
+    {% include "navbar.html.twig" %}
+    <div class="container">
+        <div class="jumbotron">
+            <form action="{{ path('Security.login') }}" method="post" class="text-center border border-light p-5">
+                <div class="md-form form-lg">
+                    <input type="text" id="inputEmail" class="form-control form-control-lg" required name="_username">
+                    <label for="inputEmail">Adresse email</label>
+                </div>
+                <br>
+                <div class="md-form form-lg">
+                    <input type="password" id="inputMDP" class="form-control form-control-lg" required name="_password">
+                    <label for="inputMDP">Mot de passe</label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="fast animated bounce btn btn-info btn-block my-4">Connexion</button>
+                </div>
+            </form>
         </div>
-        <br>
-        <div class="md-form form-lg">
-            <input type="password" id="inputMDP" class="form-control form-control-lg" required name="_password">
-            <label for="inputMDP">Mot de passe</label>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="fast animated bounce btn btn-info btn-block my-4">Connexion</button>
-        </div>
-    </form>
+    </div>
 {% endblock %}
 
 {% block title %}

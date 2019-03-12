@@ -7,18 +7,13 @@
             <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}">
             <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}">
-            {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
     <body>
-    {% include 'navbar.html.twig' %}
-    <div class="container">
-        <div class="jumbotron">
-            {% block body %}{% endblock %}
-        </div>
-    </div>
+    {#% include 'navbar.html.twig' %#}
+            {% block body %}
+            {% endblock %}
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
             <script type="text/javascript" src="{{ asset('mdb/js/jquery-3.3.1.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('mdb/js/popper.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('mdb/js/bootstrap.min.js') }}"></script>

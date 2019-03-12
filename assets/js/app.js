@@ -8,12 +8,18 @@
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
 import Vue from 'vue';
-import App from './components/App';
+import VueRouter from 'vue-router';
+import App from './App';
+import router from './router/';
+Vue.use(VueRouter);
 
-const app = new Vue({
+
+new Vue({
     el: '#app',
-    render: h => h(App)
-});
+    router,
+    template: '<App/>',
+    components: { App }
+})
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
 

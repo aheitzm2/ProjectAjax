@@ -2,9 +2,19 @@
 
 {% block title %}City Locate{% endblock %}
 
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
 {% block body %}
-    <h1 class="bounceIn animated">Home</h1>
-    <div class="example-wrapper" id="app">
-        <app></app>
-    </div>
+        <div id="app">
+                <app>
+                </app>
+        </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('app') }}
 {% endblock %}
