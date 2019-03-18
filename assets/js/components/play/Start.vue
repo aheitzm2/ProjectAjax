@@ -24,13 +24,30 @@
             </div>
             <br>
             <div class="form-group">
-                <button type="submit" class="fast animated bounce btn btn-success btn-block">Commencer</button>
+                <button type="submit" class="fast animated bounce btn btn-success btn-block" @click="getAllVilles">Commencer</button>
             </div>
         </form>
     </div>
 </template>
+
 <script>
     export default {
-        name: "Start"
+        name: "Start",
+        data() {
+            return {
+                form: {
+                    pseudo:"",
+                    difficulte:"",
+                }
+            }
+        },
+        methods: {
+            getAllVilles: function () {
+
+            }
+        },
+        mounted: {
+
+        }
     }
 </script>
