@@ -10,6 +10,7 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="Home.index")
+     * @Route("/vue/{route}", name="vue_index", requirements={"route"="^.+"})
      */
     public function index()
     {

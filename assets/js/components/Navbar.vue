@@ -16,13 +16,15 @@
 
             <!-- Links -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <router-link to="/" class="nav-link">Home
+                <li class="nav-item">
+                    <router-link :to="{name: 'homepage'}" class="nav-link">Accueil
                         <span class="sr-only">(current)</span>
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
+                    <router-link :to="{name: 'gameMenu'}" class="nav-link">Jouer
+                        <span class="sr-only">(current)</span>
+                    </router-link>
                 </li>
 
                 <!-- Dropdown -->

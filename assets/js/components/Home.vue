@@ -2,11 +2,11 @@
     <div class="home">
         <div id="container">
             <div id="welcome">
-                <h1>Hello Page</h1>
+                <h1 class="bounceIn">Page d'accueil</h1>
             </div>
             <div id="status">
                 <p>
-                    You are now in  <b>Hello vue route</b>
+                    Bonjour et bienvenue sur CityLocate ! Pour commencer une partie cliquez sur Jouer !
                 </p>
             </div>
         </div>
