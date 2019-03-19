@@ -3,7 +3,7 @@
         <h1>Informations</h1>
         <form action="#" method="post" class="nom-center p-5">
             <div class="md-form form-lg">
-                <input type="nom" id="inputPseudo" class="form-control form-control-lg" required name="pseudo">
+                <input type="text" id="inputPseudo" class="form-control form-control-lg" required name="pseudo">
                 <label for="inputPseudo">Pseudo</label>
             </div>
             <br>
@@ -42,24 +42,23 @@
         data() {
             return {
                 form: {
-                    pseudo:"",
-                    difficulte:"",
-                    ville: [
-                        { nom: 'One', value: 'A' },
-                        { nom: 'Two', value: 'B' },
-                        { nom: 'Three', value: 'C' }
-                    ]
-                }
+                    pseudo: "",
+                    difficulte: "",
+                },
+                    ville: []
             }
         },
         methods: {
             getAllVilles: function () {
-                $.getJSON('http://127.0.0.1:8000/ville/getAll', function (data) {
-                    //this.ville = data.villes
+                var self=this;
+                $.get('http://127.0.0.1:8000/ville/getAll', function (data) {
+                    self.ville= data.villes
+                })  .done(function() {
+                    console.log( this.ville );
                 })
             }
         },
-        mounted() {
+        created() {
             this.getAllVilles()
         }
     }
