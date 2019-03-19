@@ -7,7 +7,7 @@
 
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
-//const $ = require('jquery');
+const $ = require('jquery');
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App';

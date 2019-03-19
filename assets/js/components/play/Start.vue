@@ -1,9 +1,9 @@
 <template>
-    <div id="GameStart" class="jumbotron text-center">
+    <div id="GameStart" class="jumbotron nom-center">
         <h1>Informations</h1>
-        <form action="#" method="post" class="text-center p-5">
+        <form action="#" method="post" class="nom-center p-5">
             <div class="md-form form-lg">
-                <input type="text" id="inputPseudo" class="form-control form-control-lg" required name="pseudo">
+                <input type="nom" id="inputPseudo" class="form-control form-control-lg" required name="pseudo">
                 <label for="inputPseudo">Pseudo</label>
             </div>
             <br>
@@ -23,8 +23,14 @@
                 </div>
             </div>
             <br>
+            <select class="custom-select">
+                <option selected>Sélectionnez une ville</option>
+                <option v-for="v in ville" v-bind:value="v.nom">{{ v.nom }}</option>
+            </select>
+            <br>
+            <hr>
             <div class="form-group">
-                <button type="submit" class="fast animated bounce btn btn-success btn-block" @click="getAllVilles">Commencer</button>
+                <button type="submit" class="fast animated bounce btn btn-success btn-block">Commencer</button>
             </div>
         </form>
     </div>
@@ -38,16 +44,23 @@
                 form: {
                     pseudo:"",
                     difficulte:"",
+                    ville: [
+                        { nom: 'One', value: 'A' },
+                        { nom: 'Two', value: 'B' },
+                        { nom: 'Three', value: 'C' }
+                    ]
                 }
             }
         },
         methods: {
             getAllVilles: function () {
-
+                $.getJSON('http://127.0.0.1:8000/ville/getAll', function (data) {
+                    //this.ville = data.villes
+                })
             }
         },
-        mounted: {
-
+        mounted() {
+            this.getAllVilles()
         }
     }
 </script>

@@ -22,12 +22,12 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route('/ville/getAll', name="Ville.getAll")
+     * @Route("/ville/getAll", name="Ville.getAll")
      * @Route("/vue/{route}", name="vue_index", requirements={"route"="^.+"})
      */
     public function getAllVille(){
         $villes=$this->getDoctrine()->getRepository(Ville::class)->findAll();
 
-        return $this->json($villes);
+        return $this->json(["villes"=>$villes]);
     }
 }
