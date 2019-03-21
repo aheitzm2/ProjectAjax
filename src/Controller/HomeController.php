@@ -60,4 +60,17 @@ class HomeController extends AbstractController
         dump($partie);die;
         return $this->json(["partie"=>$partie]);
     }
+
+    /**
+     * @Route('/ville/find',name="Ville.find")
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function findVille(Request $request,ObjectManager $manager){
+        $ville=$request->get('ville');
+        $ville=$manager->getRepository(Ville::class)->findOneBy(['nom'=>$ville]);
+
+        return $this->json(['ville'=>$ville]);
+    }
 }

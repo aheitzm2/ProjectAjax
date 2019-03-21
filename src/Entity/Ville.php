@@ -28,6 +28,16 @@ class Ville
      */
     private $photos;
 
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=6)
+     */
+    private $latitude;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=6)
+     */
+    private $longitude;
+
     public function __construct()
     {
         $this->parties = new ArrayCollection();
@@ -78,6 +88,30 @@ class Ville
                 $photo->setVille(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude($latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude($longitude): self
+    {
+        $this->longitude = $longitude;
 
         return $this;
     }
