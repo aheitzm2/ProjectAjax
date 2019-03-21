@@ -24,18 +24,14 @@ class Ville
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="ville")
      */
-    private $pathPhoto;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Partie", mappedBy="ville")
-     */
-    private $parties;
+    private $photos;
 
     public function __construct()
     {
         $this->parties = new ArrayCollection();
+        $this->photos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,43 +51,31 @@ class Ville
         return $this;
     }
 
-    public function getPathPhoto(): ?string
-    {
-        return $this->pathPhoto;
-    }
-
-    public function setPathPhoto(string $pathPhoto): self
-    {
-        $this->pathPhoto = $pathPhoto;
-
-        return $this;
-    }
-
     /**
-     * @return Collection|Partie[]
+     * @return Collection|Photo[]
      */
-    public function getParties(): Collection
+    public function getPhotos(): Collection
     {
-        return $this->parties;
+        return $this->photos;
     }
 
-    public function addParty(Partie $party): self
+    public function addPhoto(Photo $photo): self
     {
-        if (!$this->parties->contains($party)) {
-            $this->parties[] = $party;
-            $party->setVille($this);
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
+            $photo->setVille($this);
         }
 
         return $this;
     }
 
-    public function removeParty(Partie $party): self
+    public function removePhoto(Photo $photo): self
     {
-        if ($this->parties->contains($party)) {
-            $this->parties->removeElement($party);
+        if ($this->photos->contains($photo)) {
+            $this->photos->removeElement($photo);
             // set the owning side to null (unless already changed)
-            if ($party->getVille() === $this) {
-                $party->setVille(null);
+            if ($photo->getVille() === $this) {
+                $photo->setVille(null);
             }
         }
 

@@ -27,7 +27,6 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/ville/getAll", name="Ville.getAll")
-     * @Route("/vue/{route}", name="vue_index", requirements={"route"="^.+"})
      */
     public function getAllVille(){
         $villes=$this->getDoctrine()->getRepository(Ville::class)->findAll();
@@ -37,10 +36,10 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/create/partie",name="Partie.create")
-     * @Route("/vue/{route}", name="vue_index", requirements={"route"="^.+"})
      * @param Request $request
      * @param TokenGeneratorInterface $tgi
      * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function createPartie(Request $request, TokenGeneratorInterface $tgi, ObjectManager $manager){
         $token=$tgi->generateToken();
@@ -58,7 +57,7 @@ class HomeController extends AbstractController
 
         $manager->persist($partie);
         $manager->flush();
-
+        dump($partie);die;
         return $this->json(["partie"=>$partie]);
     }
 }

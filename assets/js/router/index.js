@@ -6,6 +6,7 @@ import Game from '../components/play/Game';
 import Start from '../components/play/Start';
 import Menu from '../components/play/Menu';
 import Load from "../components/play/Load";
+import Play from "../components/play/Play";
 
 export default new Router({
     mode: 'history',
@@ -46,6 +47,13 @@ export default new Router({
                     name: 'gameLoad',
                     components: {
                         gameContent: Load
+                    }
+                },
+                {
+                    path:'play',
+                    name: 'gamePlay',
+                    components: {
+                        gameContent: Play
                     }
                 }
             ]
