@@ -29,16 +29,16 @@ class AppFixtures extends Fixture
         $p9=new Photo();
         $p10=new Photo();
 
-        $p1->setPath("../public/Image/biblio.jpg");
-        $p2->setPath("../public/Image/cine.jpg");
-        $p3->setPath("../public/Image/gare.jpg");
-        $p4->setPath("../public/Image/iut.jpg");
-        $p5->setPath("../public/Image/lion.jpg");
-        $p6->setPath("../public/Image/marche.jpg");
-        $p7->setPath("../public/Image/peuple.jpg");
-        $p8->setPath("../public/Image/porteFort.jpg");
-        $p9->setPath("../public/Image/stade.jpg");
-        $p10->setPath("../public/Image/utbm.jpg");
+        $p1->setPath("biblio.jpg");
+        $p2->setPath("cine.jpg");
+        $p3->setPath("gare.jpg");
+        $p4->setPath("iut.jpg");
+        $p5->setPath("lion.jpg");
+        $p6->setPath("marche.jpg");
+        $p7->setPath("peuple.jpg");
+        $p8->setPath("porteFort.jpg");
+        $p9->setPath("stade.jpg");
+        $p10->setPath("utbm.jpg");
 
         $p1->setLatitude(47.640237);
         $p1->setLongitude(6.857016);
@@ -74,17 +74,16 @@ class AppFixtures extends Fixture
         $v4->setLatitude(48.573675);
         $v4->setLongitude(7.751766);
 
-        $p1->setVille($v1);
-        $p2->setVille($v1);
-        $p3->setVille($v1);
-        $p4->setVille($v1);
-        $p5->setVille($v1);
-        $p6->setVille($v1);
-        $p7->setVille($v1);
-        $p8->setVille($v1);
-        $p9->setVille($v1);
-        $p10->setVille($v1);
-
+        $v1->addPhoto($p1);
+        $v1->addPhoto($p2);
+        $v1->addPhoto($p3);
+        $v1->addPhoto($p4);
+        $v1->addPhoto($p5);
+        $v1->addPhoto($p6);
+        $v1->addPhoto($p7);
+        $v1->addPhoto($p8);
+        $v1->addPhoto($p9);
+        $v1->addPhoto($p10);
 
         $manager->persist($v1);
         $manager->persist($v2);

@@ -4,13 +4,16 @@ namespace App\Controller;
 
 
 use App\Entity\Partie;
+use App\Entity\Photo;
 use App\Entity\User;
 use App\Entity\Ville;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class HomeController extends AbstractController
 {
@@ -31,7 +34,9 @@ class HomeController extends AbstractController
     public function getAllVille(){
         $villes=$this->getDoctrine()->getRepository(Ville::class)->findAll();
 
-        return $this->json(["villes"=>$villes]);
+        return $this->json(['villes'=>$villes],Response::HTTP_OK, [], [
+            ObjectNormalizer::GROUPS => ['ville'],
+        ]);
     }
 
     /**
@@ -57,12 +62,14 @@ class HomeController extends AbstractController
 
         $manager->persist($partie);
         $manager->flush();
-        dump($partie);die;
-        return $this->json(["partie"=>$partie]);
+
+        return $this->json(["partie"=>$partie, "token"=>$token],Response::HTTP_OK, [], [
+            ObjectNormalizer::GROUPS => ['partie'],
+        ]);
     }
 
     /**
-     * @Route('/ville/find',name="Ville.find")
+     * @Route("/ville/find",name="Ville.find")
      * @param Request $request
      * @param ObjectManager $manager
      * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -70,7 +77,10 @@ class HomeController extends AbstractController
     public function findVille(Request $request,ObjectManager $manager){
         $ville=$request->get('ville');
         $ville=$manager->getRepository(Ville::class)->findOneBy(['nom'=>$ville]);
-
-        return $this->json(['ville'=>$ville]);
+        $photo=$manager->getRepository(Photo::class)->findBy(['ville'=>$ville]);
+        dump($ville);
+        return $this->json(['ville'=>$ville, 'photos'=>$photo],Response::HTTP_OK, [], [
+            ObjectNormalizer::GROUPS => ['ville','photo'],
+        ]);
     }
 }

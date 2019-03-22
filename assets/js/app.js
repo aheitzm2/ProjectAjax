@@ -12,20 +12,15 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App';
 import router from './router/';
-
-const L=require('leaflet');
+import * as axios from "axios";
 
 Vue.use(VueRouter);
 
 
-new Vue({
+var vm = new Vue({
     el: '#app',
     router,
-    L,
+    axios,
     template: '<App/>',
     components: { App }
 });
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
-
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

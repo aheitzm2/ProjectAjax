@@ -24,12 +24,12 @@
             </div>
             <br>
             <select class="custom-select" required v-model="villeValue">
-                <option v-for="v in villes" v-bind:value="v.nom">{{ v.nom }}</option>
+                <option v-for="v in villes" :value="v.nom">{{ v.nom }}</option>
             </select>
             <br>
             <hr>
             <div class="form-group">
-                <input type="submit" class="fast animated bounce btn btn-success btn-block" @click="startPartie" value="Commencer">
+                <input type="button" class="fast animated bounce btn btn-success btn-block" @click="startPartie" value="Commencer">
             </div>
         </form>
     </div>
@@ -41,6 +41,8 @@
         data() {
             return {
                 pseudo: "",
+                partie:[],
+                token:"",
                 checkboxDiff:"",
                 villeValue:"",
                 villes: []
@@ -58,13 +60,23 @@
             startPartie: function(){
                 var self=this;
                 $.post('http://127.0.0.1:8000/create/partie',{ pseudo: self.pseudo, difficulte: self.checkboxDiff, ville: self.villeValue },function (data) {
+                    self.partie=data.partie;
+                    self.token=data.token;
+                });
+                localStorage.token=this.token;
 
-                })
-                this.$router.replace({name: 'gamePlay'})
+                setTimeout(function () {
+                    self.$router.replace({name: 'gamePlay', query: { ville: self.villeValue }});
+                }, 50);
             }
         },
         created() {
             this.getAllVilles()
+        },
+        watch:{
+            token(newName) {
+                localStorage.token = newName;
+            }
         }
     }
 </script>

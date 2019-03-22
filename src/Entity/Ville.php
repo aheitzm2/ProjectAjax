@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VilleRepository")
@@ -15,26 +16,31 @@ class Ville
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("ville")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("ville")
      */
     private $nom;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="ville")
+     * @Groups("ville")
      */
     private $photos;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=6)
+     * @Groups("ville")
      */
     private $latitude;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=6)
+     * @Groups("ville")
      */
     private $longitude;
 

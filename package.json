@@ -12,6 +12,7 @@
     "build": "encore production --progress"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "leaflet": "^1.4.0",
     "vue-router": "^3.0.2"
   }
