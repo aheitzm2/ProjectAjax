@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajouter un lieu{% endblock %}
+{% block body %}
+    {% include 'navbar.html.twig' %}
+    <div class="container text-center">
+        <div class="jumbotron">
+            <h1>Ajouter un lieu</h1>
+            {{ form_start(form) }}
+            <div class="md-form form-lg">
+                {{ form_widget(form.path) }}
+                <label for="customFile">Image</label>
+            </div>
+            <br>
+            <div class="md-form form-lg">
+                {{ form_widget(form.latitude) }}
+                <label for="inputLat">Latitude</label>
+            </div>
+            <br>
+            <div class="md-form form-lg">
+                {{ form_widget(form.longitude) }}
+                <label for="inputLong">Longitude</label>
+            </div>
+            <br>
+            <div class="md-form form-lg">
+                {{ form_widget(form.ville) }}
+            </div>
+            <br>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

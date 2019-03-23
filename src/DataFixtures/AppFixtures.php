@@ -14,9 +14,9 @@ class AppFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
         $v1=new Ville();
-        $v2=new Ville();
-        $v3=new Ville();
-        $v4=new Ville();
+        //$v2=new Ville();
+        //$v3=new Ville();
+        //$v4=new Ville();
 
         $p1=new Photo();
         $p2=new Photo();
@@ -64,15 +64,18 @@ class AppFixtures extends Fixture
         $v1->setNom("Belfort");
         $v1->setLatitude(47.639613);
         $v1->setLongitude(6.863610);
-        $v2->setNom("Mulhouse");
-        $v2->setLatitude(47.750568);
-        $v2->setLongitude(7.334892);
-        $v3->setNom("Montbéliard");
-        $v3->setLatitude(47.510689);
-        $v3->setLongitude(6.800063);
-        $v4->setNom("Strasbourg");
-        $v4->setLatitude(48.573675);
-        $v4->setLongitude(7.751766);
+
+        //$v2->setNom("Mulhouse");
+        //$v2->setLatitude(47.750568);
+        //$v2->setLongitude(7.334892);
+
+        //$v3->setNom("Montbéliard");
+        //$v3->setLatitude(47.510689);
+        //$v3->setLongitude(6.800063);
+//
+        //$v4->setNom("Strasbourg");
+        //$v4->setLatitude(48.573675);
+        //$v4->setLongitude(7.751766);
 
         $v1->addPhoto($p1);
         $v1->addPhoto($p2);
@@ -86,9 +89,9 @@ class AppFixtures extends Fixture
         $v1->addPhoto($p10);
 
         $manager->persist($v1);
-        $manager->persist($v2);
-        $manager->persist($v3);
-        $manager->persist($v4);
+        //$manager->persist($v2);
+        //$manager->persist($v3);
+        //$manager->persist($v4);
 
         $manager->persist($p1);
         $manager->persist($p2);
