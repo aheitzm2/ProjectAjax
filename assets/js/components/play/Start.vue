@@ -1,9 +1,10 @@
 <template>
     <div id="GameStart" class="jumbotron nom-center">
         <h1>Informations</h1>
+        <div class="alert alert-danger" id="error" role="alert" style="display: none"></div>
         <form action="#" method="post" class="nom-center p-5">
             <div class="md-form form-lg">
-                <input type="text" id="inputPseudo" class="form-control form-control-lg" required name="pseudo" v-model="pseudo">
+                <input type="text" id="inputPseudo" class="form-control form-control-lg" required name="pseudo" v-model="pseudo" @change="verifPseudo()">
                 <label for="inputPseudo">Pseudo</label>
             </div>
             <br>
@@ -23,7 +24,7 @@
                 </div>
             </div>
             <br>
-            <select class="custom-select" required v-model="villeValue">
+            <select id="selectVille" class="custom-select" required v-model="villeValue" @change="verifVille()">
                 <option v-for="v in villes" :value="v.nom">{{ v.nom }}</option>
             </select>
             <br>
@@ -45,10 +46,39 @@
                 token:"",
                 checkboxDiff:"",
                 villeValue:"",
-                villes: []
+                villes: [],
+                error: 0
             }
         },
         methods: {
+            verifPseudo(){
+                if ($('#inputPseudo').val()===null){
+                    $('#error').html('Veuillez rentrer un pseudo.');
+                    $('#error').css('display','block');
+                    this.error=1;
+                }
+                else if(($('#inputPseudo').val()).length<3){
+                    $('#error').html('Veuillez rentrer un pseudo de plus de 2 caractères.');
+                    $('#error').css('display','block');
+                    this.error=1;
+                }
+                else{
+                    this.error=0;
+                    $('#error').css('display','none');
+                }
+            },
+            verifVille(){
+                if($('#selectVille').val()===null){
+                    $('#error').html('Veuillez selectionner une ville.');
+                    $('#error').css('display','block');
+                    this.error=1;
+                }
+                else{
+                    this.error=0;
+                    $('#error').css('display','none');
+                }
+            },
+
             getAllVilles: function () {
                 var self=this;
                 $.get('http://127.0.0.1:8000/ville/getAll', function (data) {
@@ -64,10 +94,13 @@
                     self.token=data.token;
                     localStorage.token=data.token;
                 });
-
-                setTimeout(function () {
-                    self.$router.replace({name: 'gamePlay'});
-                }, 50);
+                self.verifPseudo();
+                self.verifVille();
+                if (self.error===0){
+                    setTimeout(function () {
+                        self.$router.replace({name: 'gamePlay'});
+                    }, 50);
+                }
             }
         },
         created() {

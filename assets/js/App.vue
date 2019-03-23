@@ -7,6 +7,7 @@
             <div class="jumbotron">
                     <router-view name="home"></router-view>
                     <router-view name="game"></router-view>
+                    <router-view name="content"></router-view>
             </div>
         </div>
     </div>

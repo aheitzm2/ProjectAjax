@@ -6,6 +6,7 @@ import Game from '../components/play/Game';
 import Start from '../components/play/Start';
 import Menu from '../components/play/Menu';
 import Play from "../components/play/Play";
+import Score from '../components/play/Score';
 
 export default new Router({
     mode: 'history',
@@ -49,6 +50,14 @@ export default new Router({
                     }
                 }
             ]
+        },
+        {
+            path: '/vue/score',
+            name: 'scorePage',
+            components: {
+                content: Score,
+                bar: Navbar
+            }
         }
     ]
 })

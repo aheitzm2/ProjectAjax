@@ -126,4 +126,18 @@ class HomeController extends AbstractController
 
         return $this->json('');
     }
+
+    /**
+     * @Route("/scores/best/find",name="Score.best")
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function getBestScores(Request $request,ObjectManager $manager){
+        $top=$manager->getRepository(Partie::class)->findAllBest();
+
+        return $this->json(['top'=>$top],Response::HTTP_OK, [], [
+            ObjectNormalizer::GROUPS => ['partie'],
+        ]);
+    }
 }

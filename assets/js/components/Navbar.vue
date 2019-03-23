@@ -30,12 +30,14 @@
                 <!-- Dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">Material dropdown</a>
+                       aria-haspopup="true" aria-expanded="false">Menu</a>
 
 
                     <!--Menu-->
                     <div class="dropdown-menu dropdown-primary">
-                        <a class="dropdown-item" href="#">Action</a>
+                        <router-link :to="{name: 'scorePage'}" class="dropdown-item">Score
+                            <span class="sr-only">(current)</span>
+                        </router-link>
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                         <a class="dropdown-item" href="#">Something else here</a>

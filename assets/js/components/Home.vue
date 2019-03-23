@@ -2,7 +2,7 @@
     <div class="home">
         <div id="container">
             <div id="welcome">
-                <h1 class="bounceIn">Page d'accueil</h1>
+                <h1 class="bounceIn">Bienvenue</h1>
             </div>
             <div id="status">
                 <p>
