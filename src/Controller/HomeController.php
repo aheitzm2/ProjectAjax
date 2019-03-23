@@ -55,10 +55,12 @@ class HomeController extends AbstractController
         $ville=$manager->getRepository(Ville::class)->findOneBy(['nom'=>$ville]);
 
         $partie=new Partie();
+        $partie->setAvancement(0);
         $partie->setToken($token);
         $partie->setPseudo($pseudo);
         $partie->setDifficulte($difficulte);
         $partie->setVille($ville);
+        $partie->setPlayable(true);
 
         $manager->persist($partie);
         $manager->flush();
@@ -75,12 +77,53 @@ class HomeController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function findVille(Request $request,ObjectManager $manager){
-        $ville=$request->get('ville');
-        $ville=$manager->getRepository(Ville::class)->findOneBy(['nom'=>$ville]);
+        $token=$request->get('token');
+        $partie=$manager->getRepository(Partie::class)->findOneBy(['token'=>$token]);
+
+        $ville=$manager->getRepository(Ville::class)->findOneBy(['nom'=>$partie->getVille()->getNom()]);
         $photo=$manager->getRepository(Photo::class)->findBy(['ville'=>$ville]);
         dump($ville);
-        return $this->json(['ville'=>$ville, 'photos'=>$photo],Response::HTTP_OK, [], [
-            ObjectNormalizer::GROUPS => ['ville','photo'],
+        return $this->json(['ville'=>$ville, 'photos'=>$photo, 'partie'=>$partie],Response::HTTP_OK, [], [
+            ObjectNormalizer::GROUPS => ['ville','photo','partie'],
         ]);
+    }
+
+    /**
+     * @Route("/partie/save", name="Partie.save")
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function partieSave(Request $request,ObjectManager $manager){
+        $avancement=$request->get("avancement");
+        $points=intval($request->get("points"));
+        $token=$request->get("token");
+
+        $partie=$manager->getRepository(Partie::class)->findOneBy(['token'=>$token]);
+
+        $partie->setAvancement($avancement);
+        $partie->setPoints($points);
+
+        $manager->persist($partie);
+        $manager->flush();
+
+        return $this->json("");
+    }
+
+    /**
+     * @Route("/playable", name="Partie.playable")
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function playable(Request $request,ObjectManager $manager){
+        $token=$request->get('token');
+
+        $partie=$manager->getRepository(Partie::class)->findOneBy(['token'=>$token]);
+        $partie->setPlayable(false);
+        $manager->persist($partie);
+        $manager->flush();
+
+        return $this->json('');
     }
 }

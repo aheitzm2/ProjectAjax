@@ -2,7 +2,7 @@
     <div id="Menu">
         <router-link :to="{name: 'gameStart'}" class="btn btn-success btn-block sm">Commencer</router-link>
         <br>
-        <router-link :to="{name: 'gameLoad'}" class="btn btn-warning btn-block sm">Charger partie</router-link>
+        <router-link :to="{name: 'gamePlay'}" class="btn btn-warning btn-block sm">Charger partie</router-link>
     </div>
 </template>
 <script>

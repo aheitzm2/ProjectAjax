@@ -62,11 +62,11 @@
                 $.post('http://127.0.0.1:8000/create/partie',{ pseudo: self.pseudo, difficulte: self.checkboxDiff, ville: self.villeValue },function (data) {
                     self.partie=data.partie;
                     self.token=data.token;
+                    localStorage.token=data.token;
                 });
-                localStorage.token=this.token;
 
                 setTimeout(function () {
-                    self.$router.replace({name: 'gamePlay', query: { ville: self.villeValue }});
+                    self.$router.replace({name: 'gamePlay'});
                 }, 50);
             }
         },
