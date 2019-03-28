@@ -51,7 +51,6 @@ class HomeController extends AbstractController
         $pseudo=$request->get("pseudo");
         $difficulte=$request->get("difficulte");
         $ville=$request->get("ville");
-
         $ville=$manager->getRepository(Ville::class)->findOneBy(['nom'=>$ville]);
 
         $partie=new Partie();
@@ -79,10 +78,11 @@ class HomeController extends AbstractController
     public function findVille(Request $request,ObjectManager $manager){
         $token=$request->get('token');
         $partie=$manager->getRepository(Partie::class)->findOneBy(['token'=>$token]);
-
+        dump($partie);
         $ville=$manager->getRepository(Ville::class)->findOneBy(['nom'=>$partie->getVille()->getNom()]);
         $photo=$manager->getRepository(Photo::class)->findBy(['ville'=>$ville]);
         dump($ville);
+        dump($photo);
         return $this->json(['ville'=>$ville, 'photos'=>$photo, 'partie'=>$partie],Response::HTTP_OK, [], [
             ObjectNormalizer::GROUPS => ['ville','photo','partie'],
         ]);
