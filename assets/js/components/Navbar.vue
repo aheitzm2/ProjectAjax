@@ -39,8 +39,6 @@
                             <span class="sr-only">(current)</span>
                         </router-link>
                         <a class="dropdown-item" href="http://127.0.0.1:8000/admin/menu">Menu Admin</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
 

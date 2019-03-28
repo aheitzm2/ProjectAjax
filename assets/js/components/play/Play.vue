@@ -127,10 +127,10 @@
                             console.log(self.points);
                             console.log(self.cmptPhoto);
 
-                            $.post('http://127.0.0.1:8000/partie/save',{ avancement: self.cmptPhoto, points: self.points, token:localStorage.token});
-
                             $('.alert').html("Points actuels : <strong>"+pointsTotaux+"</strong>");
+
                             self.cmptPhoto++;
+                            $.post('http://127.0.0.1:8000/partie/save',{ avancement: self.cmptPhoto, points: self.points, token:localStorage.token});
 
                             if (self.cmptPhoto>=self.photo.length){
                                 $.post('http://127.0.0.1:8000/partie/save',{ avancement: self.cmptPhoto, points: self.points, token:localStorage.token});
