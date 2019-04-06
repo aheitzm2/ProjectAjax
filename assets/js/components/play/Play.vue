@@ -135,6 +135,7 @@
                             if (self.cmptPhoto>=self.photo.length){
                                 $.post('http://127.0.0.1:8000/partie/save',{ avancement: self.cmptPhoto, points: self.points, token:localStorage.token});
                                 $.post('http://127.0.0.1:8000/playable',{token:localStorage.token});
+                                localStorage.removeItem("token");
                                 $("#imgCurrent").remove();
                                 $("#timer").remove();
                                 $("#quit").css('display','block');
